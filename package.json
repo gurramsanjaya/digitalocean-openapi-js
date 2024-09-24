@@ -1,6 +1,6 @@
 {
 	"name": "digitalocean-openapi-js",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Generated JS from digitalocean v2 openapi spec",
 	"scripts": {
 		"test": "ts-node test/*.ts",
