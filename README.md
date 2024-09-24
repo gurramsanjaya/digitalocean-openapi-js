@@ -6,6 +6,9 @@ API Spec file built from -> [DigitalOcean API Spec](https://github.com/digitaloc
 
 Used openapi-generator-cli -> [OpenApi Generator](https://github.com/OpenAPITools/openapi-generator-cli.git)
 
+## Package
+[digitalocean-openapi-js](https://www.npmjs.com/package/digitalocean-openapi-js)
+
 ## License
 
 GPL
