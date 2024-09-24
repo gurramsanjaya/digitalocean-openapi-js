@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "7.8.0",
+    "generators": {
+      "digitalocean-api-v2": {
+        "generatorName": "typescript-axios",
+        "inputSpec": "public/openapi-bundled.yaml",
+        "output": "src"
+      }
+    }
+  }
+}
