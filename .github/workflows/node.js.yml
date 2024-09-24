@@ -30,4 +30,4 @@ jobs:
     - run: npm run oa:init
     - run: npm run oa:gen
     - run: npm run biome:chk
-    - run: npm tsc:vldt
+    - run: npm run tsc:vldt
