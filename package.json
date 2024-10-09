@@ -15,8 +15,14 @@
 	"license": "GPL-3.0-only",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/gurramsanjaya/digitalocean-openapi-js"
+		"url": "git+https://github.com/gurramsanjaya/digitalocean-openapi-js.git"
 	},
+	"keywords": [
+		"digitalocean",
+		"digitalocean-api",
+		"axios",
+		"api-js"
+	],
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.2",
 		"@openapitools/openapi-generator-cli": "^2.13.9",
