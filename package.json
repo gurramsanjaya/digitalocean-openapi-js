@@ -1,6 +1,6 @@
 {
 	"name": "digitalocean-openapi-js",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Generated JS from digitalocean v2 openapi spec",
 	"scripts": {
 		"test": "node --loader ts-node/esm test/*.ts",
