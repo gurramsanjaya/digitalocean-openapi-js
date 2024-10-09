@@ -1,11 +1,20 @@
 import path from "node:path";
 import { test } from "node:test";
-import axios, { AxiosError, AxiosHeaders } from "axios";
+import axios, { type AxiosError, AxiosHeaders, isAxiosError } from "axios";
 import { config } from "dotenv";
-import { Configuration, SSHKeysApi, SizesApi } from "../dist";
+import {
+	Configuration,
+	ImagesApi,
+	RegionsApi,
+	SSHKeysApi,
+	SizesApi,
+} from "../dist/index.js";
 
-config({ path: path.join(__dirname, "app.env") });
-const _config = new Configuration({ accessToken: process.env.TOKEN });
+config({ path: path.join(import.meta.dirname, "app.env") });
+const _config = new Configuration({
+	accessToken: process.env.TOKEN,
+	// accessToken: 'XXXXXXX'
+});
 
 axios.interceptors.request.use((_request) => {
 	console.log(`Request: ${_request.url}`);
@@ -22,24 +31,74 @@ axios.interceptors.response.use((_response) => {
 	return _response;
 });
 
-test("Testing Sizes list api call", () => {
+test("Testing Sizes list api call", async (context) => {
 	const api = new SizesApi(_config);
 	const response = api.sizesList();
+	let success = false;
 	console.log(response);
-	response.then((_value) => {
-		_value.data.sizes.forEach((_size) => {
-			console.log(_size.slug);
-		});
-	});
+	await response
+		.then((_value) => {
+			_value.data.sizes.forEach((_size) => {
+				console.log(_size.slug);
+			});
+			success = true;
+		})
+		.catch(logErrors);
+	context.assert.equal(success, true);
 });
 
-test("Testing SSH list api call", () => {
+test("Testing Image list api call", async (context) => {
+	const api = new ImagesApi(_config);
+	const response = api.imagesList();
+	let success = false;
+	console.log(response);
+	await response
+		.then((_value) => {
+			_value.data.images.forEach((_image) => {
+				console.log(_image.slug);
+			});
+			success = true;
+		})
+		.catch(logErrors);
+	context.assert.equal(success, true);
+});
+
+test("Testing SSH list api call", async (context) => {
 	const api = new SSHKeysApi(_config);
 	const response = api.sshKeysList();
+	let success = false;
 	console.log(response);
-	response.then((_value) => {
-		_value.data.ssh_keys?.forEach((_key) => {
-			console.log(_key.name);
-		});
-	});
+	await response
+		.then((_value) => {
+			_value.data.ssh_keys?.forEach((_key) => {
+				console.log(_key.name);
+			});
+			success = true;
+		})
+		.catch(logErrors);
+	context.assert.equal(success, true);
 });
+
+test("Testing Regions list api call", async (context) => {
+	const api = new RegionsApi(_config);
+	const response = api.regionsList();
+	let success = false;
+	console.log(response);
+	await response
+		.then((_value) => {
+			_value.data.regions?.forEach((_regions) => {
+				console.log(_regions.slug);
+			});
+			success = true;
+		})
+		.catch(logErrors);
+	context.assert.equal(success, true);
+});
+
+function logErrors(_reason: any) {
+	console.log(isAxiosError(_reason));
+	if (isAxiosError(_reason)) {
+		const axiosReason = _reason as AxiosError;
+		console.log(axiosReason.stack);
+	}
+}

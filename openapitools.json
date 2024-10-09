@@ -7,7 +7,8 @@
       "digitalocean-api-v2": {
         "generatorName": "typescript-axios",
         "inputSpec": "public/openapi-bundled.yaml",
-        "output": "src"
+        "output": "src",
+        "templateDir": "typescript-axios-template"
       }
     }
   }

@@ -1,9 +1,9 @@
 {
 	"name": "digitalocean-openapi-js",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Generated JS from digitalocean v2 openapi spec",
 	"scripts": {
-		"test": "ts-node test/*.ts",
+		"test": "node --loader ts-node/esm test/*.ts",
 		"oa:init": "openapi-generator-cli version-manager set 7.8.0",
 		"oa:gen": "openapi-generator-cli generate",
 		"biome:chk": "biome check --write --unsafe",
@@ -16,9 +16,9 @@
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.2",
 		"@openapitools/openapi-generator-cli": "^2.13.9",
+		"dotenv": "16.4.5",
 		"ts-node": "^10.9.2",
-		"typescript": "^5.6.2",
-		"dotenv": "16.4.5"
+		"typescript": "^5.6.2"
 	},
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -31,12 +31,22 @@
 	},
 	"files": [
 		"dist",
-		"src",
 		"public"
 	],
 	"exports": {
-		".": "./dist/index.js",
-		"./api": "./dist/api.js",
-		"./configuration": "./dist/configuration.js"
-	}
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./api": {
+			"types": "./dist/api.d.ts",
+			"import": "./dist/api.js"
+		},
+		"./configuration": {
+			"types": "./dist/configuration.d.ts",
+			"import": "./dist/configuration.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"type": "module"
 }
