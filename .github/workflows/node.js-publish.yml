@@ -27,4 +27,4 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: softprops/action-gh-release@v2
         with:
-          files: ${{ steps.pack-file-name.outputs.PACK_FILE_NAME }}
+          files: ${{ env.PACK_FILE_NAME }}
